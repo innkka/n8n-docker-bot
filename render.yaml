@@ -1,7 +1,27 @@
 services:
   - type: web
-    name: n8n-job-bot-docker
+    name: n8n-docker-bot
     env: docker
+    repo: https://github.com/innkka/n8n-on-render
+    region: oregon
     plan: free
-    branch: main
-    autoDeploy: true
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: N8N_HOST
+        value: n8n-docker-bot.onrender.com
+      - key: N8N_PORT
+        value: 5678
+      - key: WEBHOOK_URL
+        value: https://n8n-docker-bot.onrender.com
+      - key: GENERIC_TIMEZONE
+        value: Europe/Jerusalem
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: 'true'
+      # leave the next two out of the YAML — define them manually in Render dashboard
+      # - key: N8N_BASIC_AUTH_USER
+      #   value: your_username
+      # - key: N8N_BASIC_AUTH_PASSWORD
+      #   value: your_password
+    autoDeploy: false
