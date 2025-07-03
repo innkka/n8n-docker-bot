@@ -1,10 +1,10 @@
 FROM n8nio/n8n:latest
 
-# Install custom npm packages like Cheerio
+# Switch to root to install packages (if ever needed)
 USER root
-RUN apk update && apk add --no-cache nano
-  nano \
-  && rm -rf /var/lib/apt/lists/*
 
+# Optional: install your custom packages here using appropriate package manager (alpine uses apk)
+# RUN apk add --no-cache your-package
+
+# Switch back to n8n user
 USER node
-RUN npm install cheerio
