@@ -3,7 +3,7 @@ services:
     name: n8n-docker-bot
     env: docker
     repo: https://github.com/innkka/n8n-on-render
-    region: oregon
+    region: frankfurt
     plan: free
     dockerfilePath: ./Dockerfile
     envVars:
