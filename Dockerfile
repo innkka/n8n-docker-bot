@@ -1,8 +1,10 @@
 FROM n8nio/n8n:latest
 
-# Install cheerio globally
+# Install custom npm packages like Cheerio
 USER root
-RUN npm install -g cheerio
+RUN apt-get update && apt-get install -y \
+  nano \
+  && rm -rf /var/lib/apt/lists/*
 
-# Switch back to n8n user
 USER node
+RUN npm install cheerio
