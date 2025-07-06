@@ -1,10 +1,12 @@
 FROM n8nio/n8n:latest
 
-# Switch to root to install packages (if ever needed)
+# Switch to root to install packages
 USER root
 
-# Optional: install your custom packages here using appropriate package manager (alpine uses apk)
-# RUN apk add --no-cache your-package
+# Install npm and then cheerio (Alpine-based image)
+RUN apk add --no-cache nodejs npm \
+    && npm install cheerio \
+    && apk del npm  # Optional: cleanup npm if not needed after install
 
 # Switch back to n8n user
 USER node
